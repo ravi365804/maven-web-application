@@ -1,5 +1,6 @@
  node{
-   
+  properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '3', daysToKeepStr: '', numToKeepStr: '3')), 
+   pipelineTriggers([pollSCM(ignorePostCommitHooks: true, scmpoll_spec: '* * * * *')])]) 
 def mavenHome = tool name :'maven-3.9.6'
 stage('CheckoutCode'){  
      git branch: 'development', changelog: false,
