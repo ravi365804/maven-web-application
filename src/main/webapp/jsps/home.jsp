@@ -11,7 +11,7 @@
 <body>
 <h1 align="center">Welcome to Uptime Career. My Name is Raveendra</h1>
 <h1 align="center"> In Uptime Career Learning Devops with Real Time scnerios.latest update in 20-04-2024</h1>
-<h1 align="center"> This Is a scripted PIpeline Project deployed by using GITHUB  on 20/04/2024.</h1>
+<h1 align="center"> This Is a scripted PIpeline Project deployed by using GITHUB  on 21/04/2024. New update done</h1>
 <h1 align="center"> the entire Code Developed by Ravikala Raveendra....</h1>
 
 
