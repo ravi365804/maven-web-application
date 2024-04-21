@@ -1,6 +1,8 @@
  node{
    def mavenHome = tool name :'maven-3.9.6'
-  triggers([pollSCM('* * * * *')])
+  triggers{
+([pollSCM('* * * * *')])
+}
 
    stage('CheckoutCode'){  
      git branch: 'development', changelog: false,
