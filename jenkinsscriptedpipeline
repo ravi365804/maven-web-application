@@ -1,7 +1,6 @@
  node{
    def mavenHome = tool name :'maven-3.9.6'
-properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '3', daysToKeepStr: '', numToKeepStr: '3')), pipelineTriggers([pollSCM('*/2 * * * *')])])
-   stage('CheckoutCode'){  
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '3', daysToKeepStr: '', numToKeepStr: '3')), pipelineTriggers([pollSCM(ignorePostCommitHooks: true, scmpoll_spec: '* * * * *')])])   stage('CheckoutCode'){  
      git branch: 'development', changelog: false,
   credentialsId: '9cf512a0-b058-48e4-9189-1d53af782bdd', poll: false, url: 'https://github.com/ravi365804/maven-web-application.git'
  }
