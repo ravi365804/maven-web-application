@@ -51,7 +51,7 @@ pipeline {
             Regards,
             Your Jenkins Server''',
             subject: 'Pipeline Success',
-            to: 'team@example.com'
+            to: 'rravindra5804@gmail.com'
         }
         failure {
             echo 'Pipeline failed! Sending failure email...'
@@ -62,7 +62,7 @@ pipeline {
             Regards,
             Your Jenkins Server''',
             subject: 'Pipeline Failure',
-            to: 'team@example.com'
+            to: 'rravindra5804@gmail.com.com'
         }
     }//post closing
 }//pipeline closing
