@@ -19,7 +19,7 @@ sh "mvn clean package"
 }
 }
 //Generate Sonar Qube Report
-stage('SonarQubeReport'){
+sSstage('SonarQubeReport'){
 steps{
 sh "mvn clean sonar:sonar"
 }
