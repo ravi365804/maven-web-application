@@ -25,7 +25,7 @@ sh "mvn clean sonar:sonar"
 }
 }
 //Upload the artifact to Nexus
-stage('UploadArtifactIntoNexus'){
+Stage('UploadArtifactIntoNexus'){
 steps{
 sh  "mvn clean deploy"
 }
