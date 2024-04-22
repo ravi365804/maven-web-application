@@ -25,7 +25,7 @@ sh "mvn clean sonar:sonar"
 }
 }
 //Upload the artifact to Nexus
-stage('UploadArtifactIntoNexus'){
+Stage('UploadArtifactIntoNexus'){
 steps{
 sh  "mvn clean deploy"
 }
@@ -53,10 +53,10 @@ post {
     failure {
         mail bcc: '', body: '''Hi Team,
         UpTimeCareer Log
-
+......Error Occured......
         Thanks,
         Regards,
-        R Raveendra.''', cc: '', from: '', replyTo: '', subject: 'BuildUpdate-Failed', to: 'rravindra5804@gmail.com'
+        R Raveendra.''', cc: '', from: '', replyTo: '', subject: 'BuildUpdate-FAILED', to: 'rravindra5804@gmail.com'
     }
 }//post closing
 }//pipeline closing
