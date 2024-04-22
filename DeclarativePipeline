@@ -46,7 +46,7 @@ welcome to uptime career
 echo "This is Declarative Pipeline"
 Thanks...
 Regards...
-R.Raveendra.''', cc: '', from: '', replyTo: '', subject: 'build update status-SUCCESS', to: 'rrvaindra5804@gmail.com'
+R.Raveendra.''', cc: '', from: '', replyTo: '', subject: 'build update status-SUCCESS', to: 'rravindra5804@gmail.com'
    }
 failure {
        mail bcc: '', body: '''Hi team,
