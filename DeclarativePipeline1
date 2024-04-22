@@ -1,0 +1,69 @@
+pipeline {
+    agent any
+    
+    tools {
+        maven 'maven-3.9.6'
+    }
+    
+    stages {
+        //Checkout
+        stage('Checkout Code') {
+            steps {
+                git branch: 'development',
+                    credentialsId: '9cf512a0-b058-48e4-9189-1d53af782bdd',
+                    url: 'https://github.com/ravi365804/maven-web-application.git'
+            }
+        }
+        //Build 
+        stage('Build The Code') {
+            steps {
+                sh "mvn clean package"
+            }
+        }
+        //Generate SonarQube
+        stage('Generate SonarQube Report') {
+            steps {
+                sh "mvn clean sonar:sonar"
+            }
+        }
+        //Upload Artifact
+        stage('Upload Artifact Into Nexus') {
+            steps {
+                sh "mvn clean deploy"
+            }
+        }
+       //Deploy Code
+        stage('Deploy Code to Tomcat Server') {
+            steps {
+                sshagent(['f69362e7-8005-482f-b157-6ffd1c9ed762']) {
+                    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.110.171.157:/opt/tomcat9/webapps"
+                }
+            }
+        }
+    }//stages closing
+    
+    post {
+        success {
+            echo 'Pipeline succeeded! Sending success email...'
+            mail body: '''Hi Team,
+            
+            The Jenkins pipeline has successfully completed.
+            
+            Regards,
+            Your Jenkins Server''',
+            subject: 'Pipeline Success',
+            to: 'team@example.com'
+        }
+        failure {
+            echo 'Pipeline failed! Sending failure email...'
+            mail body: '''Hi Team,
+            
+            The Jenkins pipeline has failed.
+            
+            Regards,
+            Your Jenkins Server''',
+            subject: 'Pipeline Failure',
+            to: 'team@example.com'
+        }
+    }//post closing
+}//pipeline closing
