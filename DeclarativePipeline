@@ -7,8 +7,55 @@ maven 'maven-3.9.6'
 stages{
 stage('CheckoutCode'){
 steps{
+ git branch: 'development', changelog: false,
+  credentialsId: '9cf512a0-b058-48e4-9189-1d53af782bdd', poll: false, url: 'https://github.com/ravi365804/maven-web-application.git'
+git branch: 'development', credentialsId: '9cf512a0-b058-48e4-9189-1d53af782bdd', url: 'https://github.com/ravi365804/maven-web-application.git'
+}
+}
+//Build The Code
+stage('BuildTheCode'){
+steps{
+sh "mvn clean package"
+}
+}
+//Generate Sonar Qube Report
+stage('SonarQubeReport'){
+steps{
+sh "mvn clean sonar:sonar"
+}
+}
+//Upload the artifact to Nexus
+stage('UploadArtifactIntoNexus'){
+steps{
+sh  "mvn clean deploy"
+}
+}
+//Deploy code to App Server
+stage('Deploy Code to Tomcat Server'){
+steps{
+sshagent(['f69362e7-8005-482f-b157-6ffd1c9ed762']){
+sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.110.171.157:/opt/tomcat9/webapps"
+}
+}
+}
+} //stages closing
+post{
+success{
+mail bcc: '', body: '''Hi Team,
+UpTimeCareer Log
 
+Thanks,
+Regards,
+R Raveendra.''', cc: '', from: '', replyTo: '', subject: 'BuildUpdate-SUCCESS', to: 'rravindra5804@gmail.com'
 }
+failure{
+mail bcc: '', body: '''Hi Team,
+UpTimeCareer Log
+
+Thanks,
+Regards,
+R Raveendra.''', cc: '', from: '', replyTo: '', subject: 'BuildUpdate-Failed', to: 'rravindra5804@gmail.com'
 }
-}
-}
+}//post closing
+}//pipeline closing
+
