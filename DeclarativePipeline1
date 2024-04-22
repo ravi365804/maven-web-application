@@ -9,9 +9,8 @@ pipeline {
         //Checkout
         stage('Checkout Code') {
             steps {
-                git branch: 'development',
-                    credentialsId: '9cf512a0-b058-48e4-9189-1d53af782bdd',
-                    url: 'https://github.com/ravi365804/maven-web-application.git'
+git branch: 'development', changelog: false,
+  credentialsId: '9cf512a0-b058-48e4-9189-1d53af782bdd', poll: false, url: 'https://github.com/ravi365804/maven-web-application.git'
             }
         }
         //Build 
