@@ -62,7 +62,7 @@ pipeline {
             Regards,
             Your Jenkins Server''',
             subject: 'Pipeline Failure',
-            to: 'rravindra5804@gmail.com.com'
+            to: 'rravindra5804@gmail.com'
         }
     }//post closing
 }//pipeline closing
