@@ -19,7 +19,7 @@ sh "mvn clean package"
 }
 }
 //Generate Sonar Qube Report
-stage('SonarQubeReport'){
+Stage('SonarQubeReport'){
 steps{
 sh "mvn clean sonar:sonar"
 }
@@ -43,6 +43,7 @@ post {
     success {
         mail bcc: '', body: '''Hi Team,
         UpTimeCareer Log
+This is Declarative Pipeline.
 
         Thanks,
         Regards,
