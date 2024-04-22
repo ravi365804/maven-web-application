@@ -25,7 +25,7 @@ sh "mvn clean sonar:sonar"
 }
 }
 //Upload the artifact to Nexus
-Stage('UploadArtifactIntoNexus'){
+stage('UploadArtifactIntoNexus'){
 steps{
 sh  "mvn clean deploy"
 }
@@ -40,23 +40,21 @@ sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.
 }
 } //stages closing
 post {
-    success {
-        mail bcc: '', body: '''Hi Team,
-        UpTimeCareer Log
-......This is Declarative Pipeline........
-
-        Thanks,
-        Regards,
-        R Raveendra.''', cc: '', from: '', replyTo: '', subject: 'BuildUpdate-SUCCESS', to: 'rravindra5804@gmail.com'
-    }
-   
-    failure {
-        mail bcc: '', body: '''Hi Team,
-        UpTimeCareer Log
-......Error Occured......
-        Thanks,
-        Regards,
-        R Raveendra.''', cc: '', from: '', replyTo: '', subject: 'BuildUpdate-FAILED', to: 'rravindra5804@gmail.com'
+success {
+        mail bcc: '', body: '''Hi team,
+welcome to uptime career
+echo "This is Declarative Pipeline"
+Thanks...
+Regards...
+R.Raveendra.''', cc: '', from: '', replyTo: '', subject: 'build update status-SUCCESS', to: 'rrvaindra5804@gmail.com'
+   }
+failure {
+       mail bcc: '', body: '''Hi team,
+welcome to uptime career
+echo "This is Declarative Pipeline"
+Thanks...
+Regards...
+R.Raveendra.''', cc: '', from: '', replyTo: '', subject: 'build update status-FAILED', to: 'rrvaindra5804@gmail.com'
     }
 }//post closing
 }//pipeline closing
