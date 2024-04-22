@@ -16,7 +16,7 @@ sh "${mavenHome}/bin/mvn clean package"
     
 sh "${mavenHome}/bin/mvn clean sonar:sonar"
 }
-   Stage('UploadArtifactIntoNexus'){
+   stage('UploadArtifactIntoNexus'){
 sh "${mavenHome}/bin/mvn clean deploy"
 }
   stage('DeployAppIntoTomcat'){
