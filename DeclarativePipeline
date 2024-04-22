@@ -38,7 +38,7 @@ sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.
 }
 }
 }
-
+} //stages closing
 post{
 success{
 mail bcc: '', body: '''Hi Team,
@@ -56,7 +56,7 @@ Thanks,
 Regards,
 R Raveendra.''', cc: '', from: '', replyTo: '', subject: 'BuildUpdate-Failed', to: 'rravindra5804@gmail.com'
 }
-} //stages closing
+
 }//post closing
 }//pipeline closing
 
